@@ -9,8 +9,8 @@ class FileHandler:
     '''
         Class to handling files.
     '''
-    def extract_lines(self, file: TextIOWrapper) -> List[str]:
+    def get_file_lines_content(self, file: TextIOWrapper) -> List[str]:
         '''
-            Extract file lines.
+            Return the file lines content.
         '''
         return file.readlines()
