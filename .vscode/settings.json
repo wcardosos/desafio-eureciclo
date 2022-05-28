@@ -1,5 +1,6 @@
 {
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--disable=E1101,E0611"],
   "python.linting.flake8Enabled": true
 }
