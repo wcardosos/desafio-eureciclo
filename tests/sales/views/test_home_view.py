@@ -70,3 +70,16 @@ class TestHomeView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['sales_count'], 3)
+
+    def test_sales_total_price(self):
+        '''
+            Should render the sales total price.
+        '''
+        create_sale()
+        create_sale()
+
+        response = self.client.get('/sales/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['sales_total_price'], 20.0)
+        self.assertContains(response, 'R$ 20.00')
