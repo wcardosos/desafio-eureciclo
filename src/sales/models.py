@@ -2,6 +2,7 @@
 '''
     Sale app models.
 '''
+from typing import Any
 from django.db import models
 
 
@@ -36,3 +37,10 @@ class Sale(models.Model):
             address=address,
             provider=provider,
         )
+
+    @staticmethod
+    def get_last() -> Any:
+        '''
+            Return the last sale.
+        '''
+        return Sale.objects.last()
