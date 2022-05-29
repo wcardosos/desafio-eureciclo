@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metainfo %}
+  <title>Home</title>
+{% endblock %}
+{% block content %}
+  <div class="container">
+    <section class="columns">
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-header-title">Última venda</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-header-title">Total de vendas</p>
+          </div>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-header-title">Valor total das vendas</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock %}
