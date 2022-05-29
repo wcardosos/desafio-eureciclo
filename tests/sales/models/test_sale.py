@@ -6,6 +6,13 @@ from django.test import TestCase
 from sales.models import Sale
 
 
+def create_sale(sale_mock: dict):
+    '''
+        Create sale in the test's database.
+    '''
+    Sale.create(sale_mock)
+
+
 class TestSale(TestCase):
     '''
         Sales test cases.
@@ -17,16 +24,14 @@ class TestSale(TestCase):
         '''
             Should create a sale.
         '''
-        new_sale_mock = {
+        Sale.create({
             'buyer': "João Silva",
             'description': "R$10 off R$20 of food",
             'price': "10.0",
             'quantity': "2",
             'address': "987 Fake St",
             'provider': "Bob's Pizza"
-        }
-
-        Sale.create(new_sale_mock)
+        })
 
         sale_created = Sale.objects.last()
 
@@ -36,14 +41,14 @@ class TestSale(TestCase):
         '''
             Should return the last sale.
         '''
-        Sale.objects.create(
-            buyer="João Silva",
-            description="R$10 off R$20 of food",
-            price="10.0",
-            quantity="2",
-            address="987 Fake St",
-            provider="Bob's Pizza"
-        )
+        create_sale({
+            'buyer': "João Silva",
+            'description': "R$10 off R$20 of food",
+            'price': "10.0",
+            'quantity': "2",
+            'address': "987 Fake St",
+            'provider': "Bob's Pizza"
+        })
 
         last_sale = Sale.get_last()
 
@@ -55,23 +60,44 @@ class TestSale(TestCase):
         '''
             Should return the sales count.
         '''
-        Sale.objects.create(
-            buyer="Test 1",
-            description="description",
-            price=10.0,
-            quantity=2,
-            address="address",
-            provider="provider"
-        )
-        Sale.objects.create(
-            buyer="Test 2",
-            description="description",
-            price=10.0,
-            quantity=2,
-            address="address",
-            provider="provider"
-        )
+        create_sale({
+            'buyer': "Test 1",
+            'description': "description",
+            'price': 10.0,
+            'quantity': 2,
+            'address': "address",
+            'provider': "provider"
+        })
+        create_sale({
+            'buyer': "Test 2",
+            'description': "description",
+            'price': 10.0,
+            'quantity': 2,
+            'address': "address",
+            'provider': "provider"
+        })
 
         count = Sale.get_count()
 
         self.assertEqual(count, 2)
+
+    def test_get_all_sales_price(self):
+        '''
+            Should return the price of all sales.
+        '''
+        new_sale_mock = {
+            'buyer': "Test",
+            'description': "description",
+            'price': 10.0,
+            'quantity': 2,
+            'address': "address",
+            'provider': "provider"
+        }
+        create_sale(new_sale_mock)
+        create_sale(new_sale_mock)
+        create_sale(new_sale_mock)
+        create_sale(new_sale_mock)
+
+        result = Sale.get_all_sales_price()
+
+        self.assertEqual(result, 40.0)
