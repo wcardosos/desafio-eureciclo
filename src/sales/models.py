@@ -2,6 +2,7 @@
 '''
     Sale app models.
 '''
+from typing import Any
 from django.db import models
 
 
@@ -36,3 +37,24 @@ class Sale(models.Model):
             address=address,
             provider=provider,
         )
+
+    @staticmethod
+    def get_last() -> Any:
+        '''
+            Return the last sale.
+        '''
+        return Sale.objects.last()
+
+    @staticmethod
+    def get_count() -> int:
+        '''
+            Return the sales count.
+        '''
+        return Sale.objects.count()
+
+    @staticmethod
+    def get_total_price() -> float:
+        '''
+            Return the sales total price.
+        '''
+        return Sale.objects.aggregate(models.Sum('price'))['price__sum']
