@@ -27,6 +27,9 @@ class TestHomeView(TestCase):
     '''
     def setUp(self):
         self.client = Client()
+    
+    def tearDown(self) -> None:
+        Sale.objects.all().delete()
 
     def test_last_sale_none(self):
         '''
@@ -38,7 +41,7 @@ class TestHomeView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIsNone(response.context['last_sale'])
         self.assertContains(response, 'Sem vendas cadastradas')
-    
+
     def test_show_last_sale_data(self):
         '''
             Should render sale's buyer, price and
@@ -53,3 +56,17 @@ class TestHomeView(TestCase):
         self.assertContains(response, 'Nome: View Test')
         self.assertContains(response, 'Preço: 10.0')
         self.assertContains(response, 'Quantidade: 2')
+
+    def test_sales_count(self):
+        '''
+            Should send the sales count in the
+            context.
+        '''
+        create_sale()
+        create_sale()
+        create_sale()
+
+        response = self.client.get('/sales/')
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['sales_count'], 3)
