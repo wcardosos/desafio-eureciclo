@@ -11,6 +11,15 @@
           <div class="card-header">
             <p class="card-header-title">Última venda</p>
           </div>
+          <div class="card-content">
+            {% if last_sale %}
+              <p class="py-2">Nome: {{ last_sale.buyer }}</p>
+              <p class="py-2">Preço: {{ last_sale.price }}</p>
+              <p class="py-2">Quantidade: {{ last_sale.quantity }}</p>
+            {% else %}
+              <p class="py-2">Sem vendas cadastradas</p>
+            {% endif %}
+          </div>
         </div>
       </div>
       <div class="column is-one-third">
