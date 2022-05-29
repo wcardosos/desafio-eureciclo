@@ -98,6 +98,6 @@ class TestSale(TestCase):
         create_sale(new_sale_mock)
         create_sale(new_sale_mock)
 
-        result = Sale.get_all_sales_price()
+        result = Sale.get_total_price()
 
         self.assertEqual(result, 40.0)

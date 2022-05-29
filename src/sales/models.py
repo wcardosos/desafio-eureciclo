@@ -53,8 +53,8 @@ class Sale(models.Model):
         return Sale.objects.count()
 
     @staticmethod
-    def get_all_sales_price() -> float:
+    def get_total_price() -> float:
         '''
-            Return the sum of all sales prices.
+            Return the sales total price.
         '''
         return Sale.objects.aggregate(models.Sum('price'))['price__sum']
