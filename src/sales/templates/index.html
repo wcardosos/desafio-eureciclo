@@ -4,6 +4,27 @@
   <title>Home</title>
 {% endblock %}
 {% block content %}
+  <div class="container pb-6 my-6">
+    <div class="is-flex is-flex-direction-column is-align-items-center">
+      <h1 class="title">Adicione mais vendas</h1>
+      <form class="is-flex is-flex-direction-column is-align-items-center">
+        <div class="file is-centered is-boxed">
+          <label class="file-label">
+            <input class="file-input" type="file" name="sales-import">
+            <span class="file-cta">
+              <span class="file-label">
+                Escolha o arquivo ...
+              </span>
+            </span>
+            <span class="file-name">
+              Nenhum arquivo selecionado
+            </span>
+          </label>
+        </div>
+        <button class="button is-primary my-4" type="submit">Iniciar</button>
+      </form>
+    </div>
+  </div>
   <div class="level">
     <div class="level-item has-text-centered">
       <div>
