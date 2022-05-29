@@ -4,44 +4,28 @@
   <title>Home</title>
 {% endblock %}
 {% block content %}
-  <div class="container">
-    <section class="columns">
-      <div class="column is-one-third">
-        <div class="card">
-          <div class="card-header">
-            <p class="card-header-title">Última venda</p>
-          </div>
-          <div class="card-content">
-            {% if last_sale %}
-              <p class="py-2">Nome: {{ last_sale.buyer }}</p>
-              <p class="py-2">Preço: {{ last_sale.price }}</p>
-              <p class="py-2">Quantidade: {{ last_sale.quantity }}</p>
-            {% else %}
-              <p class="py-2">Sem vendas cadastradas</p>
-            {% endif %}
-          </div>
-        </div>
+  <div class="level">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Última venda</p>
+        {% if last_sale %}
+          <p class="title">{{ last_sale.buyer }} - R$ {{ last_sale.price|floatformat:2 }}</p>
+        {% else %}
+          <p class="title">Sem vendas cadastradas</p>
+        {% endif %}
       </div>
-      <div class="column is-one-third">
-        <div class="card">
-          <div class="card-header">
-            <p class="card-header-title">Total de vendas</p>
-          </div>
-          <div class="card-content is-flex is-justify-content-center">
-            <p style="font-size: 64px;">{{ sales_count }}</p>
-          </div>
-        </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Total de vendas</p>
+        <p class="title">{{ sales_count }}</p>
       </div>
-      <div class="column is-one-third">
-        <div class="card">
-          <div class="card-header">
-            <p class="card-header-title">Valor total das vendas</p>
-          </div>
-          <div class="card-content is-flex is-justify-content-center" style="height: 100%;">
-            <strong style="font-size: 48px;">R$ {{ sales_total_price|floatformat:2 }}</strong>
-          </div>
-        </div>
+    </div>
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Valor total das vendas</p>
+        <p class="title">R$ {{ sales_total_price|floatformat:2 }}</p>
       </div>
-    </section>
+    </div>
   </div>
 {% endblock %}

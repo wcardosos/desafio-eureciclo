@@ -27,7 +27,7 @@ class TestHomeView(TestCase):
     '''
     def setUp(self):
         self.client = Client()
-    
+
     def tearDown(self) -> None:
         Sale.objects.all().delete()
 
@@ -53,9 +53,7 @@ class TestHomeView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['last_sale'])
-        self.assertContains(response, 'Nome: View Test')
-        self.assertContains(response, 'Preço: 10.0')
-        self.assertContains(response, 'Quantidade: 2')
+        self.assertContains(response, 'View Test - R$ 10.00')
 
     def test_sales_count(self):
         '''
