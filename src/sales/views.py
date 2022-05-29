@@ -1,3 +1,11 @@
-from django.shortcuts import render
+'''
+    Sales views.
+'''
+from django.views.generic import TemplateView
 
-# Create your views here.
+
+class HomeView(TemplateView):
+    '''
+        Homepage view.
+    '''
+    template_name = 'index.html'
