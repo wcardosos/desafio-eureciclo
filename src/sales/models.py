@@ -98,6 +98,6 @@ class Sale(models.Model):
         total_price = 0.0
 
         for sale in sales:
-            total_price += sale['price'] * sale['quantity']
+            total_price += float(sale['price']) * int(sale['quantity'])
 
         return total_price
