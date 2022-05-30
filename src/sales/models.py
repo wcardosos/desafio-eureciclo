@@ -82,3 +82,10 @@ class Sale(models.Model):
         '''
         for sale in sales_list:
             Sale.create(sale)
+
+    @staticmethod
+    def get_total_imported_sales(sales: list) -> int:
+        '''
+            Return the number of imported sales from a file.
+        '''
+        return len(sales)

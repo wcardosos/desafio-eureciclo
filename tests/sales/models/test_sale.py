@@ -37,7 +37,7 @@ class TestSale(TestCase):
         sale_created = Sale.objects.last()
 
         self.assertEqual(sale_created.buyer, 'João Silva')
-    
+
     def test_create_from_list(self):
         '''
             Should create sales from a list.
@@ -151,3 +151,14 @@ class TestSale(TestCase):
         file_handler_mock.get_file_lines_content.assert_called_once_with('file')  # noqa: E501
         txt_parser_mock.get_composed_sales.assert_called_once_with('lines content')  # noqa: E501
         self.assertEqual(result, 'composed sales')
+
+    def test_get_total_imported_sales(self):
+        '''
+            Should return the total imported sales
+            from file number.
+        '''
+        sales_mock = ['sale 1', 'sale 2', 'sale 3']
+
+        result = Sale.get_total_imported_sales(sales_mock)
+
+        self.assertEqual(result, 3)
