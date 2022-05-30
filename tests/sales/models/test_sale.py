@@ -37,6 +37,33 @@ class TestSale(TestCase):
         sale_created = Sale.objects.last()
 
         self.assertEqual(sale_created.buyer, 'João Silva')
+    
+    def test_create_from_list(self):
+        '''
+            Should create sales from a list.
+        '''
+        list_mock = [
+            {
+                'buyer': "Test 1",
+                'description': "description",
+                'price': 10.0,
+                'quantity': 2,
+                'address': "address",
+                'provider': "provider"
+            },
+            {
+                'buyer': "Test 2",
+                'description': "description",
+                'price': 10.0,
+                'quantity': 2,
+                'address': "address",
+                'provider': "provider"
+            }
+        ]
+
+        Sale.create_from_list(list_mock)
+
+        self.assertEqual(Sale.objects.count(), 2)
 
     def test_last_sale(self):
         '''
