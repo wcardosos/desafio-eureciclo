@@ -32,7 +32,7 @@
         {% if last_sale %}
           <p class="title">{{ last_sale.buyer }} - R$ {{ last_sale.price|floatformat:2 }}</p>
         {% else %}
-          <p class="title">Sem vendas cadastradas</p>
+          <p>Sem vendas cadastradas</p>
         {% endif %}
       </div>
     </div>
@@ -45,7 +45,11 @@
     <div class="level-item has-text-centered">
       <div>
         <p class="heading">Valor total das vendas</p>
-        <p class="title">R$ {{ sales_total_price|floatformat:2 }}</p>
+        {% if sales_total_price %}
+          <p class="title">R$ {{ sales_total_price|floatformat:2 }}</p>
+        {% else %}
+          <p class="title">-</p>
+        {% endif %}
       </div>
     </div>
   </div>
