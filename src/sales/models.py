@@ -89,3 +89,15 @@ class Sale(models.Model):
             Return the number of imported sales from a file.
         '''
         return len(sales)
+
+    @staticmethod
+    def get_total_price_from_imported_sales(sales: list) -> float:
+        '''
+            Return the imported sales total price.
+        '''
+        total_price = 0.0
+
+        for sale in sales:
+            total_price += sale['price'] * sale['quantity']
+
+        return total_price

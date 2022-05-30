@@ -162,3 +162,23 @@ class TestSale(TestCase):
         result = Sale.get_total_imported_sales(sales_mock)
 
         self.assertEqual(result, 3)
+
+    def test_get_total_price_from_imported_sales(self):
+        '''
+            Should return the imported sales total
+            price.
+        '''
+        sales_mock = [
+            {
+                'price': 10.0,
+                'quantity': 2
+            },
+            {
+                'price': 5.0,
+                'quantity': 3
+            }
+        ]
+
+        result = Sale.get_total_price_from_imported_sales(sales_mock)
+
+        self.assertEqual(result, 35.0)
