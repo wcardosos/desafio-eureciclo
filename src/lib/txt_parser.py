@@ -88,10 +88,10 @@ class TxtParser:
             Return the composed sales from file.
         '''
         if not isinstance(sales_from_file, list):
-            raise InvalidFileContentException()
+            raise InvalidFileContentException('Dados inconsistentes')
 
         if not self.check_is_valid_header(sales_from_file[0]):
-            raise InvalidFileContentException()
+            raise InvalidFileContentException('Estrutura de arquivo inválida')
 
         sales_from_line_without_header = sales_from_file[1:]
         sales_data = list(map(

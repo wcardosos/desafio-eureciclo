@@ -62,14 +62,14 @@ class ProcessingView(TemplateView):
                 file_handler,
                 txt_parser
             )
-        except InvalidFileContentException:
-            error = 'Conteúdo do arquivo inválido'
+        except InvalidFileContentException as invalid_file_content:
+            error = str(invalid_file_content)
         except InvalidLineContentException:
             error = 'Dados das vendas inválidos'
         except ParseException:
             error = 'Erro ao parsear os dados do arquivo'
-        except Exception as error:
-            error = f'Aconteceu um erro desconhecido. Descrição: {str(error)}'
+        except Exception as unknown_error:  # pylint: disable=broad-except
+            error = f'Aconteceu um erro desconhecido. Descrição: {str(unknown_error)}'  # noqa: E501
 
         if error:
             self.request.session['import_sales_error'] = error

@@ -48,7 +48,7 @@ class TestProcessingView(TestCase):
             )
             self.assertEqual(
                 self.client.session.get('import_sales_error'),
-                'Conteúdo do arquivo inválido'
+                'Estrutura de arquivo inválida'
             )
 
     def test_file_upload_sales_incorrect(self):
