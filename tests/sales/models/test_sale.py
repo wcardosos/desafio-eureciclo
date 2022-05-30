@@ -141,7 +141,7 @@ class TestSale(TestCase):
 
         result = Sale.get_total_price()
 
-        self.assertEqual(result, 40.0)
+        self.assertEqual(result, 80.0)
 
     def test_compose_from_file(self):
         '''
