@@ -7,6 +7,20 @@
     <div class="pb-4">
       <h1 class="title">Dados importados</h1>
     </div>
+    <div class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Vendas importadas</p>
+          <p class="title">{{ total_imported_sales }}</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Receita bruta total</p>
+          <p class="title">R$ {{ total_price|floatformat:2 }}</p>
+        </div>
+      </div>
+    </div>
     <div class="is-flex is-justify-content-center py-4">
       <a class="button is-light" href="{% url 'sales:home' %}">Fechar</a>
     </div>
