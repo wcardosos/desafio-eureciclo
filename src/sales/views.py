@@ -30,7 +30,9 @@ class HomeView(TemplateView):
         sales_total_price = Sale.get_total_price()
 
         error = self.request.session.get('import_sales_error')
+
         self.request.session['import_sales_error'] = None
+        self.request.session['sales_info'] = None
 
         data = {
             'last_sale': last_sale,
