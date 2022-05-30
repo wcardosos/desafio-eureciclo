@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block metainfo %}
   <title>Home</title>
 {% endblock %}
@@ -10,7 +9,7 @@
       <form class="is-flex is-flex-direction-column is-align-items-center">
         <div class="file is-centered is-boxed">
           <label class="file-label">
-            <input class="file-input" type="file" name="sales-import">
+            <input class="file-input" type="file" name="sales-import" accept=".txt">
             <span class="file-cta">
               <span class="file-label">
                 Escolha o arquivo ...
@@ -49,4 +48,6 @@
       </div>
     </div>
   </div>
+  {% load static %}
+  <script src="{% static 'js/index.js' %}" defer></script>
 {% endblock %}
