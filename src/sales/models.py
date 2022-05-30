@@ -47,6 +47,13 @@ class Sale(models.Model):
             provider=provider,
         )
 
+    @property
+    def total_price(self) -> float:
+        '''
+            Return sale's total price.
+        '''
+        return self.price * self.quantity
+
     @staticmethod
     def get_last() -> Any:
         '''
@@ -66,7 +73,9 @@ class Sale(models.Model):
         '''
             Return the sales total price.
         '''
-        return Sale.objects.aggregate(models.Sum('price'))['price__sum']
+        all_sales = Sale.objects.all()
+
+        return sum(list(map(lambda sale: sale.total_price, all_sales)))
 
     @staticmethod
     def compose_from_file(
