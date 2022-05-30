@@ -2,6 +2,7 @@
 '''
     Sale model tests.
 '''
+from unittest.mock import MagicMock
 from django.test import TestCase
 from sales.models import Sale
 
@@ -101,3 +102,25 @@ class TestSale(TestCase):
         result = Sale.get_total_price()
 
         self.assertEqual(result, 40.0)
+
+    def test_compose_from_file(self):
+        '''
+            Should return the composed sales.
+        '''
+        file_handler_mock = MagicMock()
+        file_handler_mock.get_file_lines_content = MagicMock()
+        file_handler_mock.get_file_lines_content.return_value = 'lines content'
+
+        txt_parser_mock = MagicMock()
+        txt_parser_mock.get_composed_sales = MagicMock()
+        txt_parser_mock.get_composed_sales.return_value = 'composed sales'
+
+        result = Sale.compose_from_file(
+            'file',
+            file_handler_mock,
+            txt_parser_mock
+        )
+
+        file_handler_mock.get_file_lines_content.assert_called_once_with('file')  # noqa: E501
+        txt_parser_mock.get_composed_sales.assert_called_once_with('lines content')  # noqa: E501
+        self.assertEqual(result, 'composed sales')
