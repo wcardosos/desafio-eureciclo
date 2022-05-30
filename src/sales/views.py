@@ -64,8 +64,8 @@ class ProcessingView(TemplateView):
             )
         except InvalidFileContentException as invalid_file_content:
             error = str(invalid_file_content)
-        except InvalidLineContentException:
-            error = 'Dados das vendas inválidos'
+        except InvalidLineContentException as invalid_line_content:
+            error = str(invalid_line_content)
         except ParseException:
             error = 'Erro ao parsear os dados do arquivo'
         except Exception as unknown_error:  # pylint: disable=broad-except

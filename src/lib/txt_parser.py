@@ -1,4 +1,4 @@
-# pylint: disable=import-error
+# pylint: disable=import-error,too-many-function-args
 '''
     Lib: TxtParser
 '''
@@ -21,12 +21,12 @@ class TxtParser:
             Return the line content separated by TAB
         '''
         if not isinstance(line, str):
-            raise InvalidLineContentException()
+            raise InvalidLineContentException('Dados de venda inválidos')
 
         sale_content = line.split('\t')
 
         if len(sale_content) != 6:
-            raise InvalidLineContentException()
+            raise InvalidLineContentException('Informações da venda incorretas. As informações necessárias são: comprador, descrição, preço unitário, quantidade, endereço e fornecedor')  # noqa: E501
 
         return sale_content
 
