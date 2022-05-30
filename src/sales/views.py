@@ -53,3 +53,13 @@ class ProcessingView(TemplateView):
         self.request.session['sales_info'] = sales_info
 
         return render(self.request, 'processing.html', {'sales': sales_info})
+
+
+class ResultView(TemplateView):
+    '''
+        Import result view.
+    '''
+    template_name = 'result.html'
+
+    def post(self, *args, **kwargs) -> HttpResponse:
+        return render(self.request, 'result.html')

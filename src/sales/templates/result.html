@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block metainfo %}
+  <title>Resultado</title>
+{% endblock %}
+{% block content %}
+  <div class="container pb-6 my-6">
+    <div class="pb-4">
+      <h1 class="title">Dados importados</h1>
+    </div>
+    <div class="is-flex is-justify-content-center py-4">
+      <a class="button is-light" href="{% url 'sales:home' %}">Fechar</a>
+    </div>
+  </div>
+{% endblock %}
