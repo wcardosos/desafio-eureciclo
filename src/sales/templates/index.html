@@ -30,7 +30,7 @@
       <div>
         <p class="heading">Última venda</p>
         {% if last_sale %}
-          <p class="title">{{ last_sale.buyer }} - R$ {{ last_sale.price|floatformat:2 }}</p>
+          <p class="title">{{ last_sale.buyer }} - R$ {{ last_sale.total_price|floatformat:2 }}</p>
         {% else %}
           <p>Sem vendas cadastradas</p>
         {% endif %}
