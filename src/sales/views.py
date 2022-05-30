@@ -5,6 +5,9 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from lib.file_handler import FileHandler
+from lib.txt_parser import TxtParser
 from .models import Sale
 
 
@@ -26,3 +29,25 @@ class HomeView(TemplateView):
         }
 
         return render(self.request, 'index.html', data)
+
+
+class ProcessingView(TemplateView):
+    '''
+        Processing sale view.
+    '''
+    template_name = 'processing.html'
+
+    def post(self, *args, **kwargs) -> HttpResponse:
+        '''
+            Process the import sales file.
+        '''
+        file_handler = FileHandler()
+        txt_parser = TxtParser()
+
+        sales_info = Sale.compose_from_file(
+            self.request.FILES['sales'],
+            file_handler,
+            txt_parser
+        )
+
+        return render(self.request, 'processing.html', {'sales': sales_info})
