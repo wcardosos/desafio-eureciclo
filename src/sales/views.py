@@ -50,4 +50,6 @@ class ProcessingView(TemplateView):
             txt_parser
         )
 
+        self.request.session['sales_info'] = sales_info
+
         return render(self.request, 'processing.html', {'sales': sales_info})
