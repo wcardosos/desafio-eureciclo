@@ -23,7 +23,12 @@ class TxtParser:
         if not isinstance(line, str):
             raise InvalidLineContentException()
 
-        return line.split('\t')
+        sale_content = line.split('\t')
+
+        if len(sale_content) != 6:
+            raise InvalidLineContentException()
+
+        return sale_content
 
     def compose_sale(self, sale_content_from_line: List[str]) -> dict:
         '''
@@ -56,6 +61,25 @@ class TxtParser:
 
         return data_dict
 
+    def check_is_valid_header(self, header_line: str) -> bool:
+        '''
+            Check is a header is valid.
+        '''
+        valid_header_accepted_values = [
+            'Comprador',
+            'Descrição',
+            'Preço Unitário',
+            'Quantidade',
+            'Endereço',
+            'Fornecedor',
+        ]
+
+        for valid_header_value in valid_header_accepted_values:
+            if valid_header_value not in header_line:
+                return False
+
+        return True
+
     def get_composed_sales(
         self,
         sales_from_file: List[str]
@@ -64,6 +88,9 @@ class TxtParser:
             Return the composed sales from file.
         '''
         if not isinstance(sales_from_file, list):
+            raise InvalidFileContentException()
+
+        if not self.check_is_valid_header(sales_from_file[0]):
             raise InvalidFileContentException()
 
         sales_from_line_without_header = sales_from_file[1:]
