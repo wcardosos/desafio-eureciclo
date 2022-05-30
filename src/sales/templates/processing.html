@@ -3,5 +3,41 @@
   <title>Processamento</title>
 {% endblock %}
 {% block content %}
-  <p>{{ file }}</p>
+  <div class="container pb-6 my-6">
+    <div class="pb-4">
+      <h1 class="title">Vendas a importar</h1>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Comprador</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Endereço</th>
+          <th>Fornecedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sale in sales %}
+          <tr>
+            <td>{{ sale.buyer }}</td>
+            <td>{{ sale.description }}</td>
+            <td>{{ sale.price }}</td>
+            <td>{{ sale.quantity }}</td>
+            <td>{{ sale.address }}</td>
+            <td>{{ sale.provider }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="columns py-4">
+      <div class="column is-1">
+        <a class="button is-light" href="{% url 'sales:home' %}">Cancelar</a>
+      </div>
+      <div class="column is-1 ml-4">
+        <a class="button is-success">Salvar</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}
