@@ -1,13 +1,13 @@
-# pylint: disable=no-member
+# pylint: disable=no-member,import-error
 '''
     TxtParser tests
 '''
 from unittest import TestCase, main
-from src.lib.txt_parser import TxtParser
-from src.errors.lib.txt_parser.invalid_line_content_exception import (
+from lib.txt_parser import TxtParser
+from errors.lib.txt_parser.invalid_line_content_exception import (
     InvalidLineContentException
 )
-from src.errors.lib.txt_parser.invalid_file_content_exception import (
+from errors.lib.txt_parser.invalid_file_content_exception import (
     InvalidFileContentException
 )
 
@@ -44,7 +44,6 @@ class TestTxtParser(TestCase):
         line_mock = None
 
         with self.assertRaises(InvalidLineContentException):
-
             self.txt_parser.get_sale_content_from_line(line_mock)
 
     def test_compose_sale(self):
