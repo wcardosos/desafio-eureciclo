@@ -31,8 +31,8 @@ class Sale(models.Model):
         try:
             buyer = sale_data['buyer']
             description = sale_data['description']
-            price = sale_data['price']
-            quantity = sale_data['quantity']
+            price = float(sale_data['price'])
+            quantity = int(sale_data['quantity'])
             address = sale_data['address']
             provider = sale_data['provider']
         except KeyError:
