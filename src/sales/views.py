@@ -90,7 +90,6 @@ class ResultView(TemplateView):
         '''
             Save the sales and render the results.
         '''
-        self.request.session.modified = True
         sales_info = self.request.session.get('sales_info')
 
         if not sales_info:
