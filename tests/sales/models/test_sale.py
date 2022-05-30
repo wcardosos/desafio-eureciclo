@@ -4,6 +4,9 @@
 '''
 from unittest.mock import MagicMock
 from django.test import TestCase
+from errors.lib.txt_parser.invalid_file_content_exception import (
+    InvalidFileContentException
+)
 from sales.models import Sale
 
 
@@ -37,6 +40,16 @@ class TestSale(TestCase):
         sale_created = Sale.objects.last()
 
         self.assertEqual(sale_created.buyer, 'João Silva')
+
+    def test_create_with_invalid_sale_data(self):
+        '''
+            Should raise an exception when the sale data
+            does not have complete info.
+        '''
+        with self.assertRaises(InvalidFileContentException):
+            Sale.create({
+                'buyer': 'Test'
+            })
 
     def test_create_from_list(self):
         '''

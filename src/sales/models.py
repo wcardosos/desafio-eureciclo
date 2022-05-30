@@ -5,6 +5,9 @@
 from typing import Any, List
 from django.db import models
 from django.core.files.uploadedfile import UploadedFile
+from errors.lib.txt_parser.invalid_file_content_exception import (
+    InvalidFileContentException
+)
 from lib.file_handler import FileHandler
 from lib.txt_parser import TxtParser
 
@@ -25,12 +28,15 @@ class Sale(models.Model):
         '''
             Create a sale.
         '''
-        buyer = sale_data['buyer']
-        description = sale_data['description']
-        price = sale_data['price']
-        quantity = sale_data['quantity']
-        address = sale_data['address']
-        provider = sale_data['provider']
+        try:
+            buyer = sale_data['buyer']
+            description = sale_data['description']
+            price = float(sale_data['price'])
+            quantity = int(sale_data['quantity'])
+            address = sale_data['address']
+            provider = sale_data['provider']
+        except KeyError:
+            raise InvalidFileContentException() from KeyError
 
         cls.objects.create(
             buyer=buyer,
