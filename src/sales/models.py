@@ -2,7 +2,7 @@
 '''
     Sale app models.
 '''
-from typing import Any
+from typing import Any, List
 from django.db import models
 from django.core.files.uploadedfile import UploadedFile
 from lib.file_handler import FileHandler
@@ -74,3 +74,30 @@ class Sale(models.Model):
         file_content = file_handler.get_file_lines_content(file)
 
         return txt_parser.get_composed_sales(file_content)
+
+    @staticmethod
+    def create_from_list(sales_list: List[dict]) -> None:
+        '''
+            Create sales from a list.
+        '''
+        for sale in sales_list:
+            Sale.create(sale)
+
+    @staticmethod
+    def get_total_imported_sales(sales: list) -> int:
+        '''
+            Return the number of imported sales from a file.
+        '''
+        return len(sales)
+
+    @staticmethod
+    def get_total_price_from_imported_sales(sales: list) -> float:
+        '''
+            Return the imported sales total price.
+        '''
+        total_price = 0.0
+
+        for sale in sales:
+            total_price += float(sale['price']) * int(sale['quantity'])
+
+        return total_price

@@ -27,3 +27,4 @@ class TestProcessingView(TestCase):
 
             self.assertEqual(response.status_code, 200)
             self.assertIsNotNone(response.context['sales'])
+            self.assertIsNotNone(self.client.session.get('sales_info'))
