@@ -23,6 +23,11 @@
         </div>
         <button class="button is-primary my-4" type="submit">Iniciar</button>
       </form>
+      {% if error %}
+        <div class="notification is-danger is-light">
+          {{ error }}
+        </div>
+      {% endif %}
     </div>
   </div>
   <div class="level">
