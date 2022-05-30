@@ -70,5 +70,5 @@ class TestProcessingView(TestCase):
             )
             self.assertEqual(
                 self.client.session.get('import_sales_error'),
-                'Dados das vendas inválidos'
+                'Informações da venda incorretas. As informações necessárias são: comprador, descrição, preço unitário, quantidade, endereço e fornecedor'  # noqa: E501
             )
