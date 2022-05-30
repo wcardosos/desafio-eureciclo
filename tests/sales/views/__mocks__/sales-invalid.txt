@@ -1,0 +1,3 @@
+Comprador	Descrição	Preço Unitário	Quantidade	Endereço	Fornecedor
+João Silva	R$10 off R$20 of food	10.0	2
+Amy Pond	R$30 of awesome for R$10	10.0	5	456 Unreal Rd	Tom's Awesome Shop

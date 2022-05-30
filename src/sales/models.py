@@ -1,4 +1,4 @@
-# pylint: disable=no-member
+# pylint: disable=no-member,import-error
 '''
     Sale app models.
 '''
@@ -36,7 +36,9 @@ class Sale(models.Model):
             address = sale_data['address']
             provider = sale_data['provider']
         except KeyError:
-            raise InvalidFileContentException() from KeyError
+            raise InvalidFileContentException(
+                f'Dados de venda inválidos: {sale_data}'
+            ) from KeyError
 
         cls.objects.create(
             buyer=buyer,

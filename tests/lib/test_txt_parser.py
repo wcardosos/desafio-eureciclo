@@ -46,6 +46,16 @@ class TestTxtParser(TestCase):
         with self.assertRaises(InvalidLineContentException):
             self.txt_parser.get_sale_content_from_line(line_mock)
 
+    def test_get_sale_content_from_line_error_length_values(self):
+        '''
+            Should raises a exception when the line does not have
+            6 values (the sale content length).
+        '''
+        line_mock = 'line   mock'
+
+        with self.assertRaises(InvalidLineContentException):
+            self.txt_parser.get_sale_content_from_line(line_mock)
+
     def test_compose_sale(self):
         '''
             Should return the sale data composed,
@@ -70,6 +80,30 @@ class TestTxtParser(TestCase):
             'address': "987 Fake St",
             'provider': "Bob's Pizza"
         })
+
+    def test_check_is_valid_header_success(self):
+        '''
+            Should return True when the header is valid
+        '''
+        header_line_mock = "Comprador	Descrição	Preço Unitário	Quantidade	Endereço	Fornecedor"  # noqa: E501
+
+        is_valid_header = self.txt_parser.check_is_valid_header(
+            header_line_mock
+        )
+
+        self.assertTrue(is_valid_header)
+
+    def test_check_is_valid_header_fail(self):
+        '''
+            Should return False when the header is not valid
+        '''
+        header_line_mock = "header line"
+
+        is_valid_header = self.txt_parser.check_is_valid_header(
+            header_line_mock
+        )
+
+        self.assertFalse(is_valid_header)
 
     def test_get_get_composed_sales(self):
         '''
