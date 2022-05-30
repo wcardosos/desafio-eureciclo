@@ -53,7 +53,7 @@ class TestHomeView(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['last_sale'])
-        self.assertContains(response, 'View Test - R$ 10.00')
+        self.assertContains(response, 'View Test - R$ 20.00')
 
     def test_sales_count(self):
         '''
@@ -79,5 +79,5 @@ class TestHomeView(TestCase):
         response = self.client.get('/sales/')
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['sales_total_price'], 20.0)
-        self.assertContains(response, 'R$ 20.00')
+        self.assertEqual(response.context['sales_total_price'], 40.0)
+        self.assertContains(response, 'R$ 40.00')
