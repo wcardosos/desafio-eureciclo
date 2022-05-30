@@ -1,14 +1,15 @@
+# pylint: disable=import-error
 '''
     Lib: TxtParser
 '''
 from typing import List
-from src.errors.lib.txt_parser.invalid_line_content_exception import (
+from errors.lib.txt_parser.invalid_line_content_exception import (
     InvalidLineContentException
 )
-from src.errors.lib.txt_parser.invalid_file_content_exception import (
+from errors.lib.txt_parser.invalid_file_content_exception import (
     InvalidFileContentException
 )
-from src.errors.lib.txt_parser.parse_exception import ParseException
+from errors.lib.txt_parser.parse_exception import ParseException
 
 
 class TxtParser:

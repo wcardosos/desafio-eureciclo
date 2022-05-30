@@ -4,6 +4,9 @@
 '''
 from typing import Any
 from django.db import models
+from django.core.files.uploadedfile import UploadedFile
+from lib.file_handler import FileHandler
+from lib.txt_parser import TxtParser
 
 
 class Sale(models.Model):
@@ -58,3 +61,16 @@ class Sale(models.Model):
             Return the sales total price.
         '''
         return Sale.objects.aggregate(models.Sum('price'))['price__sum']
+
+    @staticmethod
+    def compose_from_file(
+        file: UploadedFile,
+        file_handler: FileHandler,
+        txt_parser: TxtParser
+    ) -> dict:
+        '''
+            Compose the sales data from the uploaded file.
+        '''
+        file_content = file_handler.get_file_lines_content(file)
+
+        return txt_parser.get_composed_sales(file_content)

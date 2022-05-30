@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block metainfo %}
   <title>Home</title>
 {% endblock %}
@@ -7,10 +6,11 @@
   <div class="container pb-6 my-6">
     <div class="is-flex is-flex-direction-column is-align-items-center">
       <h1 class="title">Adicione mais vendas</h1>
-      <form class="is-flex is-flex-direction-column is-align-items-center">
+      <form action="{% url 'sales:processing' %}" method="POST" enctype="multipart/form-data" class="is-flex is-flex-direction-column is-align-items-center">
+        {% csrf_token %}
         <div class="file is-centered is-boxed">
           <label class="file-label">
-            <input class="file-input" type="file" name="sales-import">
+            <input class="file-input" type="file" name="sales" accept=".txt" required>
             <span class="file-cta">
               <span class="file-label">
                 Escolha o arquivo ...
@@ -49,4 +49,6 @@
       </div>
     </div>
   </div>
+  {% load static %}
+  <script src="{% static 'js/index.js' %}" defer></script>
 {% endblock %}

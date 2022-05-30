@@ -1,4 +1,4 @@
-# pylint: disable=no-member
+# pylint: disable=no-member,import-error
 '''
   Sales urls.
 '''
@@ -10,4 +10,5 @@ app_name = "sales"  # pylint: disable=invalid-name
 
 urlpatterns = [
     path("", views.HomeView.as_view(), name="home"),
+    path("processing/", views.ProcessingView.as_view(), name="processing")
 ]
