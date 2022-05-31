@@ -2,7 +2,7 @@
 '''
     Import views.
 '''
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from errors.lib.txt_parser.invalid_file_content_exception import (
@@ -112,3 +112,11 @@ class ResultView(TemplateView):
         self.request.session['sales_info'] = None
 
         return render(self.request, 'result.html', results)
+
+
+class SalesListView(ListView):
+    '''
+        Sales view.
+    '''
+    model = Sale
+    context_object_name = 'sales_list'

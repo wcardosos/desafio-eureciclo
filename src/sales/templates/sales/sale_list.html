@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block metainfo %}
+  <title>Vendas</title>
+{% endblock %}
+{% block content %}
+  <div class="container pb-6 my-6">
+    <div class="pb-4">
+      <h1 class="title">Vendas cadastradas</h1>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Comprador</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Endereço</th>
+          <th>Fornecedor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sale in sales_list %}
+          <tr>
+            <td>{{ sale.buyer }}</td>
+            <td>{{ sale.description }}</td>
+            <td>R$ {{ sale.price|floatformat:2 }}</td>
+            <td>{{ sale.quantity }} unidade(s)</td>
+            <td>{{ sale.address }}</td>
+            <td>{{ sale.provider }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="columns py-4">
+      <div class="column is-1">
+        <a class="button is-light" href="{% url 'sales:import' %}">Voltar para importação</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
