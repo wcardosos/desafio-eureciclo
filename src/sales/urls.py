@@ -9,6 +9,7 @@ from . import views
 app_name = "sales"  # pylint: disable=invalid-name
 
 urlpatterns = [
+    path("", views.SalesListView.as_view(), name="list"),
     path("import/", views.ImportView.as_view(), name="import"),
     path(
       "import/processing/",
