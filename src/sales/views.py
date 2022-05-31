@@ -1,6 +1,6 @@
 # pylint: disable=no-member,import-error
 '''
-    Sales views.
+    Import views.
 '''
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
@@ -18,11 +18,11 @@ from lib.txt_parser import TxtParser
 from .models import Sale
 
 
-class HomeView(TemplateView):
+class ImportView(TemplateView):
     '''
-        Homepage view.
+        Import view.
     '''
-    template_name = 'index.html'
+    template_name = 'import.html'
 
     def get(self, *args, **kwargs) -> HttpResponse:
         last_sale = Sale.get_last()
@@ -41,7 +41,7 @@ class HomeView(TemplateView):
             'error': error
         }
 
-        return render(self.request, 'index.html', data)
+        return render(self.request, 'import.html', data)
 
 
 class ProcessingView(TemplateView):
@@ -75,7 +75,7 @@ class ProcessingView(TemplateView):
 
         if error:
             self.request.session['import_sales_error'] = error
-            return redirect('/sales')
+            return redirect('/sales/import')
 
         self.request.session['sales_info'] = sales_info
 
@@ -95,7 +95,7 @@ class ResultView(TemplateView):
         sales_info = self.request.session.get('sales_info')
 
         if not sales_info:
-            return redirect('/sales')
+            return redirect('/sales/import')
 
         Sale.create_from_list(sales_info)
 

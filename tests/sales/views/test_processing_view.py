@@ -21,7 +21,7 @@ class TestProcessingView(TestCase):
         uploaded_file_path = f'{self.sales_mock_files_path}/sales.txt'
         with open(uploaded_file_path, 'rb') as uploaded_file:
             response = self.client.post(
-                '/sales/processing/',
+                '/sales/import/processing/',
                 {'sales': uploaded_file}
             )
 
@@ -37,13 +37,13 @@ class TestProcessingView(TestCase):
         invalid_file = f'{self.sales_mock_files_path}/invalid.txt'
         with open(invalid_file, 'rb') as uploaded_file:
             response = self.client.post(
-                '/sales/processing/',
+                '/sales/import/processing/',
                 {'sales': uploaded_file}
             )
 
             self.assertRedirects(
                 response,
-                '/sales',
+                '/sales/import',
                 target_status_code=301
             )
             self.assertEqual(
@@ -59,13 +59,13 @@ class TestProcessingView(TestCase):
         invalid_file = f'{self.sales_mock_files_path}/sales-invalid.txt'
         with open(invalid_file, 'rb') as uploaded_file:
             response = self.client.post(
-                '/sales/processing/',
+                '/sales/import/processing/',
                 {'sales': uploaded_file}
             )
 
             self.assertRedirects(
                 response,
-                '/sales',
+                '/sales/import',
                 target_status_code=301
             )
             self.assertEqual(

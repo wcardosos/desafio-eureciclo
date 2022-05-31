@@ -18,9 +18,9 @@ class TestProcessingView(TestCase):
             when the sales informations are not
             in the session request.
         '''
-        response = self.client.get('/sales/processing/result')
+        response = self.client.get('/sales/import/processing/result')
 
-        self.assertRedirects(response, '/sales', target_status_code=301)
+        self.assertRedirects(response, '/sales/import', target_status_code=301)
 
     def test_results(self):
         '''
@@ -37,7 +37,7 @@ class TestProcessingView(TestCase):
         }]
         session.save()
 
-        response = self.client.get('/sales/processing/result')
+        response = self.client.get('/sales/import/processing/result')
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['total_imported_sales'])
