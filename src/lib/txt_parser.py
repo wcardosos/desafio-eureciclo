@@ -57,7 +57,9 @@ class TxtParser:
                 sale_info = sale_keys[index]
                 data_dict[sale_info] = sale_content
         except Exception as error:
-            raise ParseException(error) from error
+            raise ParseException(
+                f'Aconteceu um erro durante o parseamento do arquivo: {error}'
+            ) from error
 
         return data_dict
 
