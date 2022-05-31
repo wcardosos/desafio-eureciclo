@@ -101,7 +101,7 @@ class TestProcessingView(TestCase):
                 )
                 self.assertEqual(
                     self.client.session.get('import_sales_error'),
-                    'test error'   # noqa: E501
+                    'test error'
                 )
 
     def test_file_upload_unknown_error(self):
