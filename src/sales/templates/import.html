@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block metainfo %}
-  <title>Home</title>
+  <title>Importar vendas</title>
 {% endblock %}
 {% block content %}
   <div class="container pb-6 my-6">
@@ -35,7 +35,7 @@
       <div>
         <p class="heading">Última venda</p>
         {% if last_sale %}
-          <p class="title">{{ last_sale.buyer }} - R$ {{ last_sale.total_price|floatformat:2 }}</p>
+          <p class="title is-4">{{ last_sale.buyer }} - R$ {{ last_sale.total_price|floatformat:2 }}</p>
         {% else %}
           <p>Sem vendas cadastradas</p>
         {% endif %}
