@@ -7,34 +7,40 @@
     <div class="pb-4">
       <h1 class="title">Vendas cadastradas</h1>
     </div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Comprador</th>
-          <th>Descrição</th>
-          <th>Preço</th>
-          <th>Quantidade</th>
-          <th>Endereço</th>
-          <th>Fornecedor</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for sale in sales_list %}
+    {% if sales_list %}
+      <table class="table">
+        <thead>
           <tr>
-            <td>{{ sale.buyer }}</td>
-            <td>{{ sale.description }}</td>
-            <td>R$ {{ sale.price|floatformat:2 }}</td>
-            <td>{{ sale.quantity }} unidade(s)</td>
-            <td>{{ sale.address }}</td>
-            <td>{{ sale.provider }}</td>
-            <td>
-              <a class="button is-small is-primary" href="{% url 'sales:detail' sale.id %}">Ver detalhes</a>
-            </td>
+            <th>Comprador</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Endereço</th>
+            <th>Fornecedor</th>
+            <th></th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {% for sale in sales_list %}
+            <tr>
+              <td>{{ sale.buyer }}</td>
+              <td>{{ sale.description }}</td>
+              <td>R$ {{ sale.price|floatformat:2 }}</td>
+              <td>{{ sale.quantity }} unidade(s)</td>
+              <td>{{ sale.address }}</td>
+              <td>{{ sale.provider }}</td>
+              <td>
+                <a class="button is-small is-primary" href="{% url 'sales:detail' sale.id %}">Ver detalhes</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="py-6">
+        <p>Sem vendas cadastradas</p>
+      </div>
+    {% endif %}
     <div class="columns py-4">
       <div class="column is-1">
         <a class="button is-light" href="{% url 'sales:import' %}">Voltar para importação</a>
