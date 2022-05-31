@@ -21,7 +21,7 @@ def create_sale() -> None:
     Sale.create(new_sale)
 
 
-class TestHomeView(TestCase):
+class TestImportView(TestCase):
     '''
         Home view test cases.
     '''
@@ -36,7 +36,7 @@ class TestHomeView(TestCase):
             Should render a message when the last sale
             is None.
         '''
-        response = self.client.get('/sales/')
+        response = self.client.get('/sales/import/')
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNone(response.context['last_sale'])
@@ -44,12 +44,11 @@ class TestHomeView(TestCase):
 
     def test_show_last_sale_data(self):
         '''
-            Should render sale's buyer, price and
-            quantity.
+            Should render sale's buyer and price .
         '''
         create_sale()
 
-        response = self.client.get('/sales/')
+        response = self.client.get('/sales/import/')
 
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(response.context['last_sale'])
@@ -64,7 +63,7 @@ class TestHomeView(TestCase):
         create_sale()
         create_sale()
 
-        response = self.client.get('/sales/')
+        response = self.client.get('/sales/import/')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['sales_count'], 3)
@@ -76,7 +75,7 @@ class TestHomeView(TestCase):
         create_sale()
         create_sale()
 
-        response = self.client.get('/sales/')
+        response = self.client.get('/sales/import/')
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['sales_total_price'], 40.0)

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block metainfo %}
-  <title>Processamento</title>
+  <title>Vendas</title>
 {% endblock %}
 {% block content %}
   <div class="container pb-6 my-6">
     <div class="pb-4">
-      <h1 class="title">Vendas a importar</h1>
+      <h1 class="title">Vendas cadastradas</h1>
     </div>
     <table class="table">
       <thead>
@@ -19,12 +19,12 @@
         </tr>
       </thead>
       <tbody>
-        {% for sale in sales %}
+        {% for sale in sales_list %}
           <tr>
             <td>{{ sale.buyer }}</td>
             <td>{{ sale.description }}</td>
-            <td>{{ sale.price }}</td>
-            <td>{{ sale.quantity }}</td>
+            <td>R$ {{ sale.price|floatformat:2 }}</td>
+            <td>{{ sale.quantity }} unidade(s)</td>
             <td>{{ sale.address }}</td>
             <td>{{ sale.provider }}</td>
           </tr>
@@ -33,10 +33,7 @@
     </table>
     <div class="columns py-4">
       <div class="column is-1">
-        <a class="button is-light" href="{% url 'sales:import' %}">Cancelar</a>
-      </div>
-      <div class="column is-1 ml-4">
-        <a class="button is-success" href="{% url 'sales:result' %}">Salvar</a>
+        <a class="button is-light" href="{% url 'sales:import' %}">Voltar para importação</a>
       </div>
     </div>
   </div>
