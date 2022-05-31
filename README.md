@@ -69,9 +69,28 @@ volta para a página de importação e mostra um aviso na tela.
 
 <h2 id="como-usar">Como usar</h2>
 
+Para rodar a aplicação é preciso ter o Docker instalado na sua máquina. Caso não tenha 
+o Docker instalado, acesse [aqui](https://docs.docker.com/engine/install/) e faça sua
+instalação.
+
+Para que o ambiente da aplicação esteja pronto, é preciso adicionar as seguintes
+variáveis de ambiente:
+
+```plaintext
+SECRET_KEY
+POSTGRES_USER
+POSTGRES_PASSWORD
+POSTGRES_DB
+POSTGRES_HOST
+POSTGRES_PORT
+```
+
+Estes valores são utilizados podem ser adicionados manualmente ou adicionando um arquivo _.env_
+na raiz projeto. Preencher estas variáveis de ambiente é um passo **obrigatório** para o 
+funcionamento correto do Django e do Docker.
 ### Iniciar a aplicação
 
-Para rodar a aplicação é preciso ter o Docker instalado e rodar o seguinte comando na pasta raiz do projeto:
+Para rodar a aplicação basta digitar o seguinte comando na pasta raiz do projeto:
 
 ```bash
 ./run-server.sh
