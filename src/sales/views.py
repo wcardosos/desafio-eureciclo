@@ -71,7 +71,7 @@ class ProcessingView(TemplateView):
         except ParseException as parse_exception:
             error = str(parse_exception)
         except Exception as unknown_error:  # pylint: disable=broad-except
-            error = f'Aconteceu um erro desconhecido. Descrição: {str(unknown_error)}'  # noqa: E501
+            error = f'Aconteceu um erro desconhecido: {str(unknown_error)}'  # noqa: E501
 
         if error:
             self.request.session['import_sales_error'] = error
