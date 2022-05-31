@@ -2,7 +2,7 @@
 '''
     Import views.
 '''
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from errors.lib.txt_parser.invalid_file_content_exception import (
@@ -120,3 +120,11 @@ class SalesListView(ListView):
     '''
     model = Sale
     context_object_name = 'sales_list'
+
+
+class SaleDetailView(DetailView):
+    '''
+        Sale detail view.
+    '''
+    model = Sale
+    context_object_name = 'sale'

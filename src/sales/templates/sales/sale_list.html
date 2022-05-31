@@ -16,6 +16,7 @@
           <th>Quantidade</th>
           <th>Endereço</th>
           <th>Fornecedor</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,9 @@
             <td>{{ sale.quantity }} unidade(s)</td>
             <td>{{ sale.address }}</td>
             <td>{{ sale.provider }}</td>
+            <td>
+              <a class="button is-small is-primary" href="{% url 'sales:detail' sale.id %}">Ver detalhes</a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
