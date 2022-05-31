@@ -1,4 +1,4 @@
-# pylint: disable=no-member,import-error
+# pylint: disable=no-member,import-error,unused-argument
 '''
     Import views.
 '''
@@ -68,8 +68,8 @@ class ProcessingView(TemplateView):
             error = str(invalid_file_content)
         except InvalidLineContentException as invalid_line_content:
             error = str(invalid_line_content)
-        except ParseException:
-            error = 'Erro ao parsear os dados do arquivo'
+        except ParseException as parse_exception:
+            error = str(parse_exception)
         except Exception as unknown_error:  # pylint: disable=broad-except
             error = f'Aconteceu um erro desconhecido. Descrição: {str(unknown_error)}'  # noqa: E501
 
